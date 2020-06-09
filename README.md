@@ -11,7 +11,7 @@ This project is aimed to be coupled with InfluxDB and GRAFANA, wich will provide
 
 You can run this project using this commands : 
 # ./mvnw clean -Dbrowser=chrome test
-# ./mvnw clean -Dbrowser=firefoxe test
+# ./mvnw clean -Dbrowser=firefox test
 # ./mvnw clean -Dbrowser=opera test
 
 
