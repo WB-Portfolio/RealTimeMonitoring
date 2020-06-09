@@ -24,6 +24,6 @@ public class TestValidationTV extends SetupTests {
                 }
                 String actualTitle1 = driver.getTitle();
                 String expectedTitle1 = "Google";
-                Assert.assertEquals("Condition true", actualTitle1, expectedTitle1);
+                Assert.assertEquals("Le titre de la page n'est pas exacte", actualTitle1, expectedTitle1);
         }
 }
