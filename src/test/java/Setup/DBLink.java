@@ -6,8 +6,8 @@ import org.influxdb.dto.Point;
 
 public class DBLink {
 
-        private static final InfluxDB INFLXUDB = InfluxDBFactory.connect("http://localhost:8086", "root", "root");
-        private static final String DATABASE = "Selenium";
+        private static final InfluxDB INFLXUDB = InfluxDBFactory.connect(Streams.readers().getProperty("DbURL"), "root", "root");
+        private static final String DATABASE = Streams.readers().getProperty("DbName");
 
         static {
                 INFLXUDB.setDatabase(DATABASE);

@@ -3,6 +3,9 @@ package Setup;
 import Listeners.CustomRunListener;
 import Listeners.TestSuiteDetails;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.influxdb.dto.Point;
 import org.junit.*;
 import org.junit.rules.TestRule;
@@ -11,7 +14,7 @@ import org.junit.runner.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
@@ -26,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SetupTests extends Thread {
 
+        private static final Logger logger = Logger.getLogger(SetupTests.class);
         static TestSuiteDetails testSuiteDetails;
         static TestSuiteDetails testSuiteDetails2;
         static Map<String, TestSuiteDetails> myTestResultMap = CustomRunListener.getMap();
@@ -80,6 +84,8 @@ public class SetupTests extends Thread {
         @BeforeClass
         public static void setup() throws IOException, ClassNotFoundException {
                 encours = true;
+                BasicConfigurator.configure();
+                Logger.getRootLogger().setLevel(Level.INFO);
                 totaltestnumber = Counter.testCounter();
                 if (newthread == null) {
                         newthread = new SetupTests();
@@ -88,20 +94,30 @@ public class SetupTests extends Thread {
 
                 switch (System.getProperty("browser")) {
                         case ("firefox"): {
-                                WebDriverManager.firefoxdriver().setup();
+                                if (System.getProperty("os.name").toLowerCase().contains("wind")) {
+                                        System.setProperty("webdriver.gecko.driver", Streams.readers().getProperty("FirefoxDriverPath"));
+                                } else {
+                                        WebDriverManager.firefoxdriver().setup();
+                                }
                                 driver = new FirefoxDriver();
                                 break;
                         }
-                        case ("opera"): {
-                                WebDriverManager.operadriver().setup();
-                                driver = new OperaDriver();
+                        case ("IE"): {
+                                System.setProperty("webdriver.ie.driver", Streams.readers().getProperty("IeDriverPath"));
+                                driver = new InternetExplorerDriver();
                                 break;
                         }
-                        default: {
-                                WebDriverManager.chromedriver().setup();
+                        case ("chrome"): {
+                                if (System.getProperty("os.name").toLowerCase().contains("wind")) {
+                                        System.setProperty("webdriver.chrome.driver", Streams.readers().getProperty("ChromeDriverPath"));
+                                } else {
+                                        WebDriverManager.chromedriver().setup();
+                                }
                                 driver = new ChromeDriver();
                                 break;
                         }
+                        default:
+                                logger.info("The browser is not correctly chosen");
                 }
 
         }
@@ -114,7 +130,7 @@ public class SetupTests extends Thread {
                         testSuiteDetails = myTestResultMap.get(allscenarios.get(allscenarios.size() - 2));
                         Point point = Point.measurement("testmethod")
                                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                                .tag("testclass",testSuiteDetails.getTestClassName())
+                                .tag("testclass", testSuiteDetails.getTestClassName())
                                 .tag("name", testSuiteDetails.getTestCaseName())
                                 .tag("result", testSuiteDetails.getTestStatus())
                                 .addField("duration", testSuiteDetails.getElaspsedTime())
@@ -127,7 +143,7 @@ public class SetupTests extends Thread {
                         testSuiteDetails2 = myTestResultMap.get(Ignoredscenarios.get(Ignoredscenarios.size() - 2));
                         Point point = Point.measurement("testmethod")
                                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                                .tag("testclass",testSuiteDetails2.getTestClassName())
+                                .tag("testclass", testSuiteDetails2.getTestClassName())
                                 .tag("name", testSuiteDetails2.getTestCaseName())
                                 .tag("result", testSuiteDetails2.getTestStatus())
                                 .addField("duration", testSuiteDetails2.getElaspsedTime())
@@ -157,7 +173,7 @@ public class SetupTests extends Thread {
                                 testSuiteDetails = myTestResultMap.get(allscenarios.get(allscenarios.size() - 1));
                                 Point point = Point.measurement("testmethod")
                                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                                        .tag("testclass",testSuiteDetails.getTestClassName())
+                                        .tag("testclass", testSuiteDetails.getTestClassName())
                                         .tag("name", testSuiteDetails.getTestCaseName())
                                         .tag("result", testSuiteDetails.getTestStatus())
                                         .addField("duration", testSuiteDetails.getElaspsedTime())
@@ -170,7 +186,7 @@ public class SetupTests extends Thread {
                                 testSuiteDetails2 = myTestResultMap.get(Ignoredscenarios.get(Ignoredscenarios.size() - 1));
                                 Point point = Point.measurement("testmethod")
                                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                                        .tag("testclass",testSuiteDetails2.getTestClassName())
+                                        .tag("testclass", testSuiteDetails2.getTestClassName())
                                         .tag("name", testSuiteDetails2.getTestCaseName())
                                         .tag("result", testSuiteDetails2.getTestStatus())
                                         .addField("duration", testSuiteDetails2.getElaspsedTime())
