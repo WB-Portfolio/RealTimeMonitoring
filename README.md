@@ -13,8 +13,8 @@ This project is aimed to be coupled with InfluxDB and GRAFANA, which will provid
    1- launch the docker-compose file to get InfluxDB and GRAFANA running, using  the command ;
 # docker-compose up -d
 
-   2- Create a DataBase using this command (The name here is selenium, change it if you want):
-#  curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE selenium"
+   2- Create a DataBase using this command (The name here is Selenium, change it if you want):
+#  curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE Selenium"
 
    3- Open GRAFANA, select data source and import the Dashboard Json file included in this project
    
