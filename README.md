@@ -18,7 +18,7 @@ Before running Your tests, make sure to:
 
    3- Open GRAFANA using this URL: **http://localhost:3000** , select data source and connect InfluxDB instance to GRAFANA.
    
-   4- Create a Dashboard on GRAFANA and use the Json configuration file included in this project to set the Dashboard up.
+   4- Import Dashboard on GRAFANA using the Json configuration file included in this project to set the Dashboard up.
    
    5- Fill the Configuration.properties file with your local properties:
       - Database Name
