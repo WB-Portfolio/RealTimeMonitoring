@@ -2,6 +2,7 @@ package Scenarios;
 
 import Setup.SetupTests;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +17,7 @@ public class TestVlidationConsole extends SetupTests {
 
 
         @Test
-        public void scenario2(){
+        public void scenario2() {
                 driver.manage().window().maximize();
                 driver.get("http://www.ldlc.com");
                 String actualTitle2 = driver.getTitle();
@@ -35,7 +36,7 @@ public class TestVlidationConsole extends SetupTests {
 
 
         @Test()
-        public void scenario3 (){
+        public void scenario3() {
                 driver.manage().window().maximize();
                 driver.get("http://www.facebook.com");
                 // Temps d'attente pour rallonger le test et observer les stats du tableau de bord
@@ -44,13 +45,13 @@ public class TestVlidationConsole extends SetupTests {
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }
-                //L'assert fail ici a pour but d'avoir un test qui ne passe pas et pouvoir le visualiser au tableau de bord
+                //L'assert fail ici a pour but d'avoir un test qui ne passe pas et pouvoir le visualiser sur le Dashboard GRAFANA
                 Assert.fail();
         }
 
 
         @Test
-        public void scenario4(){
+        public void scenario4() {
 
                 driver.get("http://www.ldlc.com");
                 String actualTitle2 = driver.getTitle();
@@ -68,9 +69,12 @@ public class TestVlidationConsole extends SetupTests {
         }
 
 
+        @Ignore
+        @Test
+        public void scenario5() {
+//                Ce test est ignoré pour avoir un test ignoré dans les compteurs du Dashboard GRAFANA
 
-
-
+        }
 
 
 }
