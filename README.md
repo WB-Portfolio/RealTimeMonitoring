@@ -16,7 +16,7 @@ Before running Your tests, make sure to:
    2- Create a DataBase using this command (The name here is Selenium, change it if you want):
 #  curl -i -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE Selenium"
 
-   3- Open GRAFANA, select data source and connect InfluxDB instance to GRAFANA.
+   3- Open GRAFANA using this URL: **http://localhost:3000** , select data source and connect InfluxDB instance to GRAFANA.
    
    4- Create a Dashboard on GRAFANA and use the Json configuration file included in this project to set the Dashboard up.
    
