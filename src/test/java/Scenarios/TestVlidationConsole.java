@@ -62,9 +62,9 @@ public class TestVlidationConsole extends SetupTests {
                         e.printStackTrace();
                 }
                 Assert.assertEquals("Le titre de la page n'est pas exacte", expectedTitle2, actualTitle2);
-                driver.findElement(By.xpath("//*[@id=\"search_search_text\"]")).sendKeys("tv");
+                driver.findElement(By.xpath("//*[@id=\"search_search_text\"]")).sendKeys("son");
                 driver.findElement(By.className("submit")).click();
-                Assert.assertTrue(driver.getPageSource().contains("Les résultats pour tv"));
+                Assert.assertTrue(driver.getPageSource().contains("Les résultats pour son"));
         }
 
 
