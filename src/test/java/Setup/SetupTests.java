@@ -117,7 +117,7 @@ public class SetupTests extends Thread {
                                 break;
                         }
                         default:
-                                logger.info("The browser is not correctly chosen");
+                                logger.info("The browser is not correctly defined");
                 }
 
         }

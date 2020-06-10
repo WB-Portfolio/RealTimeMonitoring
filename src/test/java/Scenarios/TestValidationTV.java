@@ -18,7 +18,7 @@ public class TestValidationTV extends SetupTests {
                 driver.manage().window().maximize();
                 // Temps d'attente pour rallonger le test et observer les stats du tableau de bord
                 try {
-                        Thread.sleep(20000);
+                        Thread.sleep(30000);
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }

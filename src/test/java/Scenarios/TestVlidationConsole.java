@@ -24,7 +24,7 @@ public class TestVlidationConsole extends SetupTests {
                 String expectedTitle2 = "LDLC.com - High-Tech Expérience";
                 // Temps d'attente pour rallonger le test et observer les stats du tableau de bord
                 try {
-                        Thread.sleep(20000);
+                        Thread.sleep(30000);
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }
@@ -41,7 +41,7 @@ public class TestVlidationConsole extends SetupTests {
                 driver.get("http://www.facebook.com");
                 // Temps d'attente pour rallonger le test et observer les stats du tableau de bord
                 try {
-                        Thread.sleep(20000);
+                        Thread.sleep(30000);
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }
@@ -58,7 +58,7 @@ public class TestVlidationConsole extends SetupTests {
                 String expectedTitle2 = "LDLC.com - High-Tech Expérience";
                 // Temps d'attente pour rallonger le test et observer les stats du tableau de bord
                 try {
-                        Thread.sleep(20000);
+                        Thread.sleep(30000);
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }
@@ -72,7 +72,7 @@ public class TestVlidationConsole extends SetupTests {
         @Ignore
         @Test
         public void scenario5() {
-//                Ce test est ignoré pour avoir un test ignoré dans les compteurs du Dashboard GRAFANA
+//                Ce test est ignoré pour avoir un test @Ignored dans les compteurs du Dashboard GRAFANA
 
         }
 
