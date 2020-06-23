@@ -1,5 +1,10 @@
 node {
    try {
+       stage('Preparation - Checkout') {
+           git branch: 'master',
+               url: "https://github.com/WB-Portfolio/RealTimeMonitoring.git"
+        }
+
         stage('Preparation - Launching InfluxDB and GRAFANA and cleaning mvn') {
            sh "docker-compose up -d"
            sh "./mvnw clean"
